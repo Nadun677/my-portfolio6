@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitZone Project</title>
+
+<style>
+body{
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #1a0033, #0f001f);
+  color:white;
+  padding:40px;
+}
+
+/* TITLE */
+h1{
+  color:#a855f7;
+  font-size:32px;
+}
+
+/* CONTAINER */
+.container{
+  max-width:900px;
+  margin:auto;
+}
+
+/* SLIDER */
+.slider{
+  position:relative;
+  overflow:hidden;
+  border-radius:15px;
+  margin-top:25px;
+}
+
+.slides{
+  display:flex;
+  transition:0.5s ease;
+}
+
+.slides img{
+  width:100%;
+  flex-shrink:0;
+  border-radius:15px;
+}
+
+/* ARROWS */
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.5);
+  padding:10px;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+.left{ left:10px; }
+.right{ right:10px; }
+
+/* DOTS */
+.dots{
+  text-align:center;
+  margin-top:10px;
+}
+
+.dot{
+  height:10px;
+  width:10px;
+  margin:5px;
+  background:#555;
+  display:inline-block;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+.active{
+  background:#a855f7;
+}
+
+/* BUTTONS */
+.controls{
+  margin-top:20px;
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+button{
+  background:#9333ea;
+  color:white;
+  border:none;
+  padding:12px 18px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button:hover{
+  background:#7e22ce;
+}
+
+/* TECH TAGS */
+.tags{
+  margin-top:15px;
+}
+
+.tag{
+  display:inline-block;
+  background:rgba(168,85,247,0.2);
+  color:#c084fc;
+  padding:6px 10px;
+  border-radius:6px;
+  margin:4px;
+  font-size:13px;
+}
+
+/* FULLSCREEN */
+.fullscreen{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:black;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.fullscreen img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>FitZone Website</h1>
+
+<p>
+Modern fitness web application UI showcasing multiple screens and smooth user experience.
+</p>
+
+<!-- SLIDER -->
+<div class="slider">
+
+  <div class="slides" id="slides">
+
+    <!-- ⚠️ FIXED PATHS -->
+    <img src="/projects/fitsimage/FitZone1.png">
+    <img src="/projects/fitsimage/FitZone2.png">
+    <img src="/projects/fitsimage/FitZone3.png">
+    <img src="/projects/fitsimage/FitZone4.png">
+
+  </div>
+
+  <!-- ARROWS -->
+  <div class="arrow left" onclick="prevSlide()">⬅</div>
+  <div class="arrow right" onclick="nextSlide()">➡</div>
+
+</div>
+
+<!-- DOTS -->
+<div class="dots" id="dots"></div>
+
+<!-- BUTTONS -->
+<div class="controls">
+  <button onclick="openFullscreen()">🔍 Fullscreen</button>
+
+  <a href="https://github.com/Nadun677/FitZone.git" target="_blank">
+    <button>💻 GitHub</button>
+  </a>
+</div>
+
+<!-- TECH -->
+<h3>Tech Used</h3>
+<div class="tags">
+  <span class="tag">HTML</span>
+  <span class="tag">JavaScript</span>
+  <span class="tag">CSS</span>
+</div>
+
+</div>
+
+<!-- FULLSCREEN -->
+<div class="fullscreen" id="fullscreen" onclick="closeFullscreen()">
+  <img id="fullscreen-img">
+</div>
+
+<script>
+
+let index = 0
+const slides = document.getElementById("slides")
+const images = slides.children
+const dotsContainer = document.getElementById("dots")
+
+/* CREATE DOTS */
+for(let i=0;i<images.length;i++){
+  let dot = document.createElement("span")
+  dot.classList.add("dot")
+  dot.onclick = () => {
+    index = i
+    showSlide()
+  }
+  dotsContainer.appendChild(dot)
+}
+
+function updateDots(){
+  const dots = document.querySelectorAll(".dot")
+  dots.forEach(d => d.classList.remove("active"))
+  dots[index].classList.add("active")
+}
+
+function showSlide(){
+  slides.style.transform = `translateX(-${index * 100}%)`
+  updateDots()
+}
+
+function nextSlide(){
+  index = (index + 1) % images.length
+  showSlide()
+}
+
+function prevSlide(){
+  index = (index - 1 + images.length) % images.length
+  showSlide()
+}
+
+/* AUTO SLIDE */
+setInterval(nextSlide, 4000)
+
+/* FULLSCREEN */
+function openFullscreen(){
+  document.getElementById("fullscreen").style.display = "flex"
+  document.getElementById("fullscreen-img").src = images[index].src
+}
+
+function closeFullscreen(){
+  document.getElementById("fullscreen").style.display = "none"
+}
+
+/* INIT */
+showSlide()
+
+</script>
+
+</body>
+</html>
