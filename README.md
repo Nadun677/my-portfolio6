@@ -136,7 +136,7 @@ The portfolio is optimized for:
 
 Clone the repository:
 
-
+---
 
 ## 🚀 Live Demo
 
