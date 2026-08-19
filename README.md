@@ -131,6 +131,9 @@ The portfolio is optimized for:
 - 📲 Tablet
 
 ---
+## Live Demo
+
+https://nadundevold.netlify.app/
 
 ## 🚀 Getting Started
 
@@ -138,8 +141,4 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/Nadun677/my-portfolio.git
----
-## Live Demo
-
-https://nadundevold.netlify.app/
 
