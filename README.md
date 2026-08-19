@@ -136,5 +136,12 @@ The portfolio is optimized for:
 
 Clone the repository:
 
+
+
+## 🚀 Live Demo
+
+https://nadundevold.netlify.app/
+
+
 ```bash
 git clone https://github.com/Nadun677/my-portfolio.git
